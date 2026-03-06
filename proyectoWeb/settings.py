@@ -11,17 +11,16 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 from django.contrib.messages import constants as mensajes_de_error
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zj8l12l@*g4o7u%4#+&dt^9s9c*t65q68!l8f(+7=-=eew#x*5'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-zj8l12l@*g4o7u%4#+&dt^9s9c*t65q68!l8f(+7=-=eew#x*5')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,7 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'carro.procesodecontexto.importe_total_carro'
+                'carro.procesodecontexto.importe_total_carro',
             ],
         },
     },
@@ -83,8 +82,6 @@ WSGI_APPLICATION = 'proyectoWeb.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -94,8 +91,6 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -113,9 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-#LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'UTC'
@@ -125,16 +117,12 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+# Static files
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de correo
@@ -142,8 +130,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'andresdmb483@gmail.com'
-EMAIL_HOST_PASSWORD = 'ciqz urup xbjf dffr'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
