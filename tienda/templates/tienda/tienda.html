@@ -1,0 +1,44 @@
+{% extends "ProyectoWebApp/base.html" %}
+{% block title %}Tienda{% endblock %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+</head>
+<div class="container">
+    <div style="float:right;">
+        {% if request.user.is_authenticated %}
+            {% include "carro/widget.html" %}
+        {% else %}
+            <div class="alert alert-danger text-center">Login para ver Carro</div>
+        {% endif %}
+    </div>
+  <div class="row">
+{% for producto in productos %}
+ <div class="col-md-3">
+     
+    <div class="card" style="width: 100%; margin: 10px 10px;">
+
+        <img src="{{producto.imagen.url}} " class="card-img-top">
+        <div class="card-body" style="text-align: center;">
+            <h5 class="card-title" style="font-size: 14px;">{{producto.nombre}}</h5>
+            <p class="card-text">{{producto.descripcion}}</p>
+            <p class="card-text">{{producto.precio}}&nbsp;$</p>
+        </div>
+        <div class="card-footer" style="text-align: center;">
+            <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-primary">Agregar al carrito</a>
+        </div>    
+        
+    </div><!--card-->
+
+ </div>
+
+    {% endfor %}
+</div>
+ </div>
+</html>
+{% endblock %}

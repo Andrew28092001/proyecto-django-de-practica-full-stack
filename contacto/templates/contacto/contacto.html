@@ -1,0 +1,26 @@
+{% extends "ProyectoWebApp/base.html" %}
+{% block title %}Contacto{% endblock %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+</head>
+<div class="contenedorFormulario">
+    {% if "valido" in request.GET %}
+
+    <p style="color: white;">informacion enviada correctamente</p>
+
+
+    {% endif %}
+    <form action="" method="post" style="text-align: center;">
+       {% csrf_token %}
+    <table style="color: white; margin: 20px auto;">{{ miFormulario.as_table }}</table>
+    <input type="submit" value="Enviar" style="width: 150px;">
+    </form>
+</div>
+</html>
+{% endblock %}
