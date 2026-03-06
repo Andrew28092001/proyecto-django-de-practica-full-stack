@@ -112,4 +112,4 @@ proyectoWeb/
 
 ## 📬 Contacto
 
-Desarrollado por **Andrés** · [andres28sept@hotmail.com](mailto:andres28sept@hotmail.com)
+Desarrollado por **Andrés** ·
